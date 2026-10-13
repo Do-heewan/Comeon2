@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbfaf6">
+  <meta name="description" content="우리 반의 새로운 케미를 발견하는 시간. 이름 공을 신나게 섞어 공평하게 팀을 만들어 보세요.">
+  <title>모여모여 — 우리 반 랜덤 팀 만들기</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2220%22%20fill%3D%22%23b9a6eb%22%2F%3E%3Ccircle%20cx%3D%2223%22%20cy%3D%2228%22%20r%3D%223%22%20fill%3D%22%23554768%22%2F%3E%3Ccircle%20cx%3D%2241%22%20cy%3D%2228%22%20r%3D%223%22%20fill%3D%22%23554768%22%2F%3E%3Cpath%20d%3D%22M23%2040q9%209%2018%200%22%20fill%3D%22none%22%20stroke%3D%22%23554768%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E" type="image/svg+xml">
+  <style>/* 모여모여 — a little luck, a new team. */
+:root {
+  --page: #fbfaf6;
+  --paper: #ffffff;
+  --ink: #353347;
+  --muted: #93909f;
+  --lavender: #8c75d5;
+  --purple: #9178db;
+  --purple-dark: #7c62c5;
+  --mint: #eef6f0;
+  --pink: #fae5e6;
+  --yellow: #fff0b9;
+  --line: #ebe9e5;
+  font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-synthesis: none;
+  color: var(--ink);
+  background: var(--page);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+button { color: inherit; }
+button:disabled { cursor: not-allowed; }
+button, input, textarea { outline: none; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #bba8ed; outline-offset: 4px; }
+button { transition: background .18s ease, transform .18s ease, box-shadow .18s ease, opacity .18s ease; }
+button:active:not(:disabled) { transform: translateY(1px); }
+a { color: inherit; }
+svg { flex-shrink: 0; vertical-align: middle; }
+.icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.brand-dot { color: #a58cd5; }
+#sound-toggle { width: auto; gap: 6px; padding: 0 12px; border-radius: 20px; }
+.sound-label { font-size: 10px; white-space: nowrap; }
+[hidden] { display: none !important; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.site-header { max-width: 1240px; height: 90px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.brand > svg, .brand-logo { width: 40px; height: 40px; }
+.brand-name { font-weight: 850; font-size: 24px; letter-spacing: -1.2px; }
+.brand-tagline { margin-left: 18px; margin-right: auto; padding-left: 18px; border-left: 1px solid #dedbd6; color: var(--muted); font-size: 12px; letter-spacing: -.2px; }
+.header-actions { display: flex; align-items: center; gap: 9px; }
+.icon-button { display: inline-flex; align-items: center; justify-content: center; width: 39px; height: 39px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: #807d8d; }
+.icon-button svg { width: 17px; height: 17px; }
+.icon-button:hover { background: #f0edf7; color: var(--lavender); border-color: #ded5ee; }
+.icon-button.is-active, .icon-button[aria-pressed='true'] { background: #eee8fb; border-color: #d5c9ef; color: var(--purple-dark); }
+.page-shell { max-width: 1240px; margin: 0 auto; padding: 32px 28px 0; }
+.hero { position: relative; display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; min-height: 176px; }
+.hero-copy { position: relative; z-index: 1; }
+.eyebrow { display: inline-flex; align-items: center; gap: 6px; color: #8a729f; background: #f1eaf5; border-radius: 20px; padding: 6px 10px; font-size: 10px; font-weight: 700; letter-spacing: .2px; }
+.eyebrow svg { width: 12px; height: 12px; }
+.hero h1 { margin: 12px 0 10px; font-size: clamp(34px, 3.3vw, 44px); line-height: 1.2; font-weight: 800; letter-spacing: -2.1px; }
+.lavender-text { color: var(--lavender); }
+.hero-description { margin: 0; color: #9692a0; font-size: 12px; line-height: 1.75; letter-spacing: -.3px; }
+.hero-art { position: relative; width: 245px; height: 190px; margin-right: 43px; margin-top: -4px; }
+.hero-sticker { position: absolute; display: flex; align-items: center; justify-content: center; }
+.sticker-note { width: 170px; height: 155px; right: 20px; top: 20px; background: #fff2bd; border: 1px solid #eedfa5; border-radius: 4px 4px 16px 4px; box-shadow: 3px 5px 0 #f0e9cf; transform: rotate(-9deg); color: #9b8856; font-size: 15px; font-weight: 650; letter-spacing: -.5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.sticker-note > span { font-size: 8px; letter-spacing: .5px; font-weight: 450; opacity: .7; }
+.sticker-note > strong { font-size: 16px; font-weight: 700; }
+.sticker-note > svg { width: 98px; height: 58px; }
+.sticker-note > small { font-size: 9px; font-weight: 450; }
+.hero-doodle { position: absolute; left: 18px; top: 15px; color: #c5b5df; font-size: 20px; transform: rotate(-14deg); }
+.sticker-note::before { content: ''; position: absolute; width: 46px; height: 18px; top: -10px; left: 62px; background: #e9dfef; opacity: .87; transform: rotate(5deg); }
+.sticker-note::after { content: '✦'; position: absolute; bottom: 8px; right: 13px; font-size: 14px; color: #cdb87c; }
+.sticker-heart { left: 11px; top: 127px; width: 48px; height: 48px; transform: rotate(-15deg); color: #dfa4af; font-size: 42px; text-shadow: 2px 3px 0 #f3dadd; }
+.sticker-heart svg { width: 46px; height: 46px; }
+.small-star { right: 0; top: 0; width: 43px; height: 43px; color: #b6a4df; font-size: 37px; transform: rotate(12deg); }
+.small-star svg { width: 36px; height: 36px; }
+.workspace { display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 24px; align-items: stretch; }
+.setup-panel { padding: 24px; border: 1px solid #e9e6e2; border-radius: 25px; background: var(--paper); box-shadow: 0 4px 8px #39324802; }
+.section-heading { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
+.step-number { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 8px; background: #f0eaf9; color: #9c84d0; font-size: 11px; font-weight: 750; }
+.section-title { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 15px; font-weight: 750; letter-spacing: -.5px; }
+.section-title h2 { margin: 0; font: inherit; font-size: 14px; line-height: 1.4; }
+.text-button { margin-left: auto; border: 0; background: transparent; padding: 4px 0; color: #9b8ab8; font-size: 11px; letter-spacing: -.2px; }
+.text-button:hover { color: var(--purple-dark); text-decoration: underline; text-underline-offset: 3px; }
+.input-label { display: flex; align-items: center; justify-content: space-between; margin: 0 0 10px; font-size: 11px; color: #817c8f; font-weight: 550; }
+.count-badge { display: inline-flex; align-items: center; gap: 3px; border-radius: 20px; background: #f1edf7; color: #9a83c4; padding: 4px 8px; font-size: 10px; }
+.count-badge strong { font-weight: 750; }
+.names-input { display: block; width: 100%; min-height: 140px; max-height: 350px; resize: vertical; padding: 15px 16px; border: 1px dashed #d8d2e1; border-radius: 13px; color: #645d74; background: #fdfcfef0; font-size: 12px; line-height: 1.95; transition: border-color .18s, background .18s; }
+.names-input::placeholder { color: #b4acbf; }
+.names-input:hover { border-color: #bcaad9; }
+.names-input:focus { border-color: #a48bcc; background: #fff; }
+.names-input[aria-invalid='true'] { border-color: #d7909e; background: #fffafa; }
+.input-hint { display: flex; align-items: center; gap: 5px; margin: 9px 0 0; color: #aaa5b2; font-size: 10px; line-height: 1.5; }
+.input-hint svg { width: 11px; height: 11px; }
+.field-error { margin: 8px 0 0; color: #bd6279; font-size: 11px; line-height: 1.6; }
+.panel-divider { border: 0; border-top: 1px solid #f0edf1; margin: 17px 0; }
+.team-stepper { display: flex; align-items: center; gap: 6px; }
+.stepper-button { display: inline-flex; align-items: center; justify-content: center; width: 37px; height: 37px; padding: 0; border: 1px solid #e9e4ef; border-radius: 10px; background: #fff; color: #8b809e; font-size: 23px; line-height: 1; }
+.stepper-button:hover:not(:disabled) { border-color: #c5b4e0; background: #f7f3fc; }
+.stepper-button:disabled { color: #d4cedd; background: #fcfbfd; }
+.stepper-button svg { width: 14px; height: 14px; }
+#team-count { width: 43px; height: 37px; padding: 0; border: 0; text-align: center; color: #5e566d; background: transparent; font-size: 21px; font-weight: 700; appearance: textfield; -moz-appearance: textfield; }
+#team-count::-webkit-inner-spin-button, #team-count::-webkit-outer-spin-button { appearance: none; margin: 0; }
+.team-unit { font-size: 12px; color: #9b94a5; margin-right: 4px; }
+.team-estimate { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; border-radius: 20px; background: #f5f1fb; color: #9d88c4; padding: 7px 10px; font-size: 10px; white-space: nowrap; }
+.team-estimate svg { width: 12px; height: 12px; }
+.field-note { margin: 8px 0 0; font-size: 10px; line-height: 1.6; color: #b0aab8; }
+.speed-options { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.speed-option { display: flex; align-items: center; justify-content: center; gap: 6px; flex-direction: column; gap: 3px; min-height: 47px; padding: 7px 10px; border: 1px solid #eae6ef; border-radius: 10px; color: #a39aaa; background: #fff; font-size: 11px; }
+.speed-option small { font-size: 9px; font-weight: 400; color: #b0a6bc; }
+.speed-option svg { width: 14px; height: 14px; }
+.speed-option:hover { background: #faf7ff; border-color: #d8ccea; }
+.speed-option.is-active, .speed-option[aria-pressed='true'] { color: #9580bd; background: #f5f0fd; border-color: #d8c8f1; font-weight: 650; box-shadow: inset 0 0 0 .5px #d8c8f1; }
+.shuffle-button { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; height: 53px; margin-top: 20px; padding: 0 15px; color: #fff; background: var(--purple); border: 1px solid transparent; border-radius: 12px; font-size: 14px; font-weight: 650; letter-spacing: -.3px; box-shadow: 0 4px 0 #e9e0f8; }
+.shuffle-button svg { width: 18px; height: 18px; }
+.shuffle-button svg:last-child { margin-left: auto; width: 17px; height: 17px; }
+.shuffle-button svg:first-child { margin-right: auto; }
+.shuffle-button:hover:not(:disabled) { background: #856acb; box-shadow: 0 5px 0 #e9e0f8, 0 7px 17px #9178db1a; transform: translateY(-1px); }
+.shuffle-button:disabled { opacity: .57; }
+.setup-footnote { display: flex; align-items: center; justify-content: center; gap: 5px; margin: 13px 0 0; font-size: 9px; color: #b3acbd; line-height: 1.5; }
+.setup-footnote svg { width: 11px; height: 11px; }
+.mixer-panel, .result-panel { position: relative; min-height: 632px; overflow: hidden; border-radius: 25px; border: 1px solid #e4ece5; background-color: var(--mint); background-image: radial-gradient(#cddfd1 0.65px, transparent .65px); background-size: 14px 14px; }
+.mixer-header { display: flex; align-items: center; justify-content: space-between; padding: 23px 26px; }
+.mixer-label { display: flex; align-items: center; gap: 7px; color: #91a496; font-size: 10px; font-weight: 650; letter-spacing: 1.4px; }
+.mixer-label svg { width: 12px; height: 12px; }
+.status-pill { display: inline-flex; align-items: center; gap: 5px; background: #ffffffba; border: 1px solid #e2eae3; border-radius: 20px; padding: 6px 9px; color: #92a297; font-size: 9px; }
+.status-dot { width: 5px; height: 5px; border-radius: 50%; background: #9dbc9d; }
+.is-shuffling .status-dot { background: #aa8dd7; animation: statusPulse 1s ease infinite; }
+.stage-content { position: relative; display: flex; flex-direction: column; align-items: center; padding: 5px 20px 27px; text-align: center; }
+.stage-eyebrow { margin: 0 0 8px; color: #99afa0; font-size: 10px; font-weight: 500; letter-spacing: .8px; }
+#stage-title { margin: 0; color: #66776b; font-size: 24px; line-height: 1.4; letter-spacing: -1px; font-weight: 750; }
+.machine-scene { position: relative; flex-shrink: 0; width: 310px; height: 335px; margin-top: 13px; transform-origin: 50% 85%; }
+.machine-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.ball-container { position: absolute; left: 31px; top: 19px; width: 248px; height: 220px; overflow: hidden; border-radius: 48% 48% 42% 42%; isolation: isolate; }
+.name-ball { position: absolute; left: 0; top: 0; display: flex; align-items: center; justify-content: center; width: 65px; max-width: 74px; height: 31px; border-radius: 50px; border: 1px solid #ffffffa8; background: var(--ball-color, #eee6fc); color: #807389; box-shadow: 0 3px 0 #6f62720d, inset 0 1px 0 #fff7; font-size: 10px; font-weight: 550; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; will-change: transform; user-select: none; }
+.name-ball::before { content: ''; position: absolute; top: 5px; left: 9px; width: 10px; height: 3px; border-radius: 3px; background: #ffffff70; transform: rotate(-20deg); }
+.machine-caption { margin: -3px 0 0; color: #95a39a; font-size: 11px; line-height: 1.8; }
+.stage-status { min-height: 27px; margin: 9px 0 0; color: #8a9d90; font-size: 11px; line-height: 1.7; }
+.progress-track { width: 190px; height: 5px; margin-top: 9px; border-radius: 10px; background: #dae6dd; overflow: hidden; }
+.progress-fill { height: 100%; width: 0; border-radius: inherit; background: #a890d8; transition: width .25s ease; }
+.stage-actions { display: flex; align-items: center; gap: 15px; margin-top: 13px; min-height: 23px; }
+.stage-actions button { display: flex; align-items: center; justify-content: center; gap: 4px; border: 0; padding: 3px 6px; background: transparent; font-size: 10px; color: #91a197; }
+.stage-actions button:hover { color: #7d6b9f; }
+.stage-actions svg { width: 12px; height: 12px; }
+.stage-tips { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 0 18px 24px; }
+.stage-tips > span, .stage-tip { display: inline-flex; align-items: center; gap: 5px; padding: 7px 10px; border: 1px solid #dde8df; border-radius: 20px; color: #96a59a; background: #f7fbf7a6; font-size: 9px; line-height: 1.3; }
+.stage-tips svg { width: 11px; height: 11px; }
+.reveal-card { position: absolute; top: 201px; left: 50%; z-index: 4; width: 183px; padding: 22px 16px 21px; border: 1px solid #ffffff; border-radius: 20px; background: #ffffffed; box-shadow: 0 12px 45px #6a5d8b26; transform: translateX(-50%); animation: revealPop .35s cubic-bezier(.16,1,.3,1) both; backdrop-filter: blur(6px); }
+.reveal-name, #reveal-name { display: block; margin: 7px 0 0; color: #756090; font-weight: 800; font-size: 27px; letter-spacing: -1px; }
+.reveal-team { display: block; color: #a291b7; font-size: 11px; }
+.reveal-welcome { display: block; margin-top: 10px; font-size: 9px; color: #b8a8c7; }
+.reveal-card > svg { color: #d3bd7b; }
+.team-preview { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 4px 18px 20px; }
+.mini-team { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid #e4e8e2; border-radius: 11px; background: #fff9; font-size: 10px; color: #95a093; }
+.mini-team-icon { font-size: 13px; }
+.mini-team-title { color: #8d8896; font-weight: 550; }
+.mini-team-count { padding-left: 3px; color: #b0a6ba; font-size: 9px; }
+.is-shuffling .machine-scene { animation: machineWiggle .45s ease-in-out infinite; }
+.is-shuffling .machine-knob, .is-shuffling #machine-knob { transform-box: fill-box; transform-origin: center; animation: knobSpin .8s linear infinite; }
+.result-panel { padding-bottom: 25px; }
+.result-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 30px 27px 23px; }
+.result-sticker { color: #dbbe70; font-size: 42px; transform: rotate(12deg); line-height: 1; margin-top: 12px; }
+.result-header .stage-eyebrow { display: block; }
+.result-header > div { min-width: 0; }
+.result-eyebrow { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 7px; font-size: 10px; color: #99a48f; letter-spacing: .3px; }
+.result-title { margin: 0; color: #65786b; font-size: 24px; font-weight: 750; letter-spacing: -.9px; line-height: 1.4; }
+.result-subtitle { margin: 9px 0 0; color: #98a59b; font-size: 11px; line-height: 1.6; }
+.result-header .status-pill { flex-shrink: 0; margin-top: 4px; }
+.results-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; padding: 0 25px; }
+.team-card { min-width: 0; overflow: hidden; border: 1px solid #e3e9e1; border-radius: 17px; background: #fffffff0; box-shadow: 0 3px 0 #cad6c810; animation: teamAppear .5s both; animation-delay: calc(var(--team-index, 0) * 70ms); }
+.team-card-header { display: flex; align-items: center; gap: 7px; padding: 14px 14px 12px; background: var(--team-color, #f5edf9); border-bottom: 1px solid #ffffffc4; }
+.team-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 9px; background: #ffffff9e; font-size: 16px; flex-shrink: 0; }
+.team-name { min-width: 0; width: 100%; padding: 3px 0; border: 0; border-bottom: 1px solid transparent; background: transparent; color: #82758e; font-size: 12px; font-weight: 700; letter-spacing: -.3px; }
+.team-name:hover { border-bottom-color: #baacc7; }
+.team-name:focus { border-bottom-color: #a087bd; outline-offset: 1px; }
+.team-size { flex-shrink: 0; color: #a299ab; font-size: 9px; white-space: nowrap; }
+.team-members { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 7px; padding: 15px 13px 17px; min-height: 80px; }
+.member-chip { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #eeebf0; border-radius: 7px; background: #fbfafc; padding: 6px 9px; color: #8a8197; font-size: 11px; line-height: 1.3; overflow-wrap: anywhere; }
+.result-actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 25px 20px 0; }
+.button-secondary, .button-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 39px; padding: 10px 14px; border: 1px solid #dbe2dc; border-radius: 10px; font-size: 11px; color: #8e9a90; background: #ffffffc9; }
+.button-secondary svg, .button-primary svg { width: 13px; height: 13px; }
+.button-secondary:hover { background: #fff; border-color: #b8c8bb; }
+.button-primary { color: #fff; background: #a18ac9; border-color: #a18ac9; }
+.button-primary:hover { background: #8c74bb; border-color: #8c74bb; }
+.results-footer { margin: 13px 20px 0; color: #a2aea4; font-size: 10px; text-align: center; line-height: 1.6; }
+.footer { display: flex; align-items: center; justify-content: space-between; max-width: 1240px; padding: 25px 28px 29px; margin: 0 auto; color: #b2aebb; font-size: 10px; line-height: 1.6; }
+.footer-wordmark { font-size: 12px; font-weight: 700; color: #9f99ac; letter-spacing: -.5px; }
+.footer-description { font-size: 9px; color: #b7b0bd; font-weight: 400; margin-left: 12px; letter-spacing: -.1px; }
+.footer p { margin: 0; }
+.footer-mark { color: #d8b5c0; margin: 0 3px; }
+.footer svg { width: 11px; height: 11px; }
+.modal { width: min(460px, calc(100% - 36px)); max-height: calc(100dvh - 60px); overflow-y: auto; margin: auto; padding: 29px; border: 1px solid #eee8f5; border-radius: 24px; background: #fffefa; color: var(--ink); box-shadow: 0 24px 100px #51416729; }
+.modal::backdrop { background: #45405266; backdrop-filter: blur(3px); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+.modal > h2 { margin: 20px 0 0; font-size: 22px; letter-spacing: -.7px; }
+.help-steps p { margin: 4px 0 0; }
+.modal-header h2 { margin: 0; font-size: 21px; letter-spacing: -.7px; }
+.modal-close { width: 31px; height: 31px; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 50%; background: #f3edf7; color: #aa98b8; }
+.modal-close svg { width: 15px; height: 15px; }
+.help-steps { margin: 24px 0; padding-left: 22px; color: #8d829a; font-size: 13px; line-height: 1.9; }
+.help-steps li { padding-left: 5px; margin: 13px 0; }
+.help-steps li::marker { color: #ac94cd; font-weight: 700; }
+.help-steps strong { color: #766586; font-weight: 650; }
+.modal p { color: #a297ae; font-size: 12px; line-height: 1.8; }
+.modal-button { width: 100%; height: 44px; border: 0; border-radius: 11px; background: #a38bcd; color: #fff; font-weight: 650; font-size: 13px; }
+.modal-button:hover { background: #8e75bb; }
+.toast { position: fixed; z-index: 50; bottom: 29px; left: 50%; max-width: calc(100% - 32px); padding: 13px 21px; border-radius: 50px; background: #544a62; color: #fff; font-size: 12px; line-height: 1.6; text-align: center; box-shadow: 0 6px 24px #493a5c26; opacity: 0; transform: translate(-50%, 10px); transition: opacity .2s, transform .2s; pointer-events: none; }
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+.confetti-container { position: fixed; z-index: 30; inset: 0; overflow: hidden; pointer-events: none; }
+.confetti-piece { position: absolute; top: -20px; width: 8px; height: 12px; border-radius: 2px; background: var(--confetti-color, #b5a0dd); animation: confettiFall 2.8s cubic-bezier(.16,.66,.52,1) forwards; }
+@keyframes machineWiggle { 0%,100% { transform: rotate(-1deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-2px); } }
+@keyframes knobSpin { to { transform: rotate(360deg); } }
+@keyframes statusPulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+@keyframes revealPop { from { opacity: 0; transform: translate(-50%, 10px) scale(.9); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+@keyframes teamAppear { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes confettiFall { 0% { transform: translate(0, -20px) rotate(0); opacity: 1; } 80% { opacity: 1; } 100% { transform: translate(var(--drift, 80px), 105vh) rotate(var(--spin, 540deg)); opacity: 0; } }
+@media (min-width: 1400px) { .page-shell { padding-top: 34px; } .hero { margin-bottom: 28px; } }
+@media (max-width: 1000px) { .workspace { grid-template-columns: 320px minmax(0,1fr); gap: 18px; } .setup-panel { padding: 23px; } .hero-art { margin-right: 10px; } .team-estimate { padding: 7px 8px; } .results-grid { padding: 0 18px; gap: 10px; } .team-card-header { padding: 12px 10px; gap: 5px; } .team-members { padding: 13px 10px; } }
+@media (max-width: 760px) {
+  .site-header { height: 82px; padding: 0 24px; }
+  .brand-tagline { display: none; }
+  .brand > svg, .brand-logo { width: 35px; height: 35px; }
+  .brand-name { font-size: 22px; }
+  .page-shell { padding: 29px 24px 0; }
+  .hero { min-height: auto; margin-bottom: 28px; }
+  .hero-art { display: none; }
+  .hero h1 { font-size: 35px; letter-spacing: -1.7px; }
+  .hero-description { font-size: 12px; }
+  .workspace { grid-template-columns: 1fr; gap: 20px; }
+  .setup-panel { padding: 25px; }
+  .names-input { min-height: 139px; }
+  .panel-divider { margin: 21px 0; }
+  .section-heading { margin-bottom: 17px; }
+  .team-stepper { max-width: 100%; }
+  .shuffle-button { margin-top: 23px; }
+  .mixer-panel, .result-panel { min-height: 610px; }
+  .mixer-header { padding: 23px 25px; }
+  .stage-content { padding-top: 3px; }
+  .results-grid { padding: 0 22px; gap: 12px; }
+  .result-header { padding: 28px 24px 22px; }
+  .team-card-header { padding: 13px; }
+  .team-members { padding: 15px 13px; }
+  .footer { padding: 22px 24px 27px; font-size: 9px; }
+}
+@media (max-width: 480px) {
+  .site-header { height: 75px; padding: 0 19px; }
+  .brand { gap: 8px; }
+  .brand-name { font-size: 21px; }
+  .icon-button { width: 34px; height: 34px; }
+  .header-actions { gap: 7px; }
+  #sound-toggle { width: 34px; padding: 0; }
+  .sound-label { display: none; }
+  .page-shell { padding: 26px 16px 0; }
+  .hero { padding: 0 3px; margin-bottom: 25px; }
+  .eyebrow { font-size: 9px; padding: 5px 9px; }
+  .hero h1 { font-size: 31px; margin-top: 14px; line-height: 1.3; letter-spacing: -1.5px; }
+  .hero-description { font-size: 11px; line-height: 1.9; }
+  .hero-description br { display: none; }
+  .setup-panel { padding: 23px; border-radius: 21px; }
+  .mixer-panel, .result-panel { border-radius: 21px; min-height: 610px; }
+  .mixer-header { padding: 20px; }
+  .mixer-label { font-size: 9px; letter-spacing: 1px; }
+  #stage-title { font-size: 22px; }
+  .stage-content { padding-left: 7px; padding-right: 7px; }
+  .machine-scene { width: 292px; height: 316px; }
+  .ball-container { left: 29.2px; top: 17.9px; width: 233.6px; height: 207.2px; transform: scale(.942); transform-origin: top left; width: 248px; height: 220px; }
+  .stage-tips { gap: 5px; padding-left: 11px; padding-right: 11px; }
+  .stage-tips > span, .stage-tip { padding: 6px 7px; font-size: 8px; }
+  .result-header { padding: 25px 20px 20px; }
+  .result-title { font-size: 22px; }
+  .result-header .status-pill { font-size: 8px; padding: 6px 7px; }
+  .results-grid { padding: 0 17px; gap: 10px; }
+  .team-card { border-radius: 14px; }
+  .team-card-header { padding: 10px 9px; gap: 5px; }
+  .team-icon { width: 23px; height: 23px; font-size: 13px; border-radius: 7px; }
+  .team-name { font-size: 11px; }
+  .team-size { font-size: 8px; }
+  .team-members { gap: 5px; padding: 12px 9px; }
+  .member-chip { font-size: 10px; padding: 5px 7px; }
+  .result-actions { gap: 7px; margin-left: 15px; margin-right: 15px; }
+  .button-secondary, .button-primary { padding: 9px 10px; font-size: 10px; gap: 5px; }
+  .footer { flex-direction: column; align-items: center; gap: 4px; padding: 21px 16px 26px; }
+  .modal { padding: 24px; }
+}
+@media (max-width: 350px) { .results-grid { grid-template-columns: 1fr; } .machine-scene { transform: scale(.92); margin-left: -8px; margin-right: -8px; } .team-estimate { font-size: 9px; padding: 7px; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .confetti-container { display: none; }
+}
+@media print {
+  :root, body { color: #353347; background: #fff; }
+  .site-header, .hero, .setup-panel, .mixer-panel, .footer, .result-actions, .results-footer, .toast, .confetti-container, dialog { display: none !important; }
+  .page-shell { max-width: none; padding: 0; }
+  .workspace { display: block; }
+  .result-panel { display: block !important; min-height: 0; border: 0; background: #fff; padding-bottom: 0; overflow: visible; }
+  .result-panel[hidden] { display: none !important; }
+  .result-header { padding: 0 0 24px; }
+  .result-title { color: #353347; }
+  .result-subtitle { color: #777; }
+  .result-header .status-pill { display: none; }
+  .results-grid { padding: 0; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+  .team-card { break-inside: avoid; border-color: #ddd; box-shadow: none; animation: none; }
+  .team-card-header { background: #f5f5f5; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .team-name { color: #353347; }
+  .team-members { min-height: 80px; }
+  .member-chip { color: #555; background: #fff; }
+}
+
+/* Comfortable contrast and stable name reveal. */
+.hero-description { color: #7e7889; }
+.input-hint, .field-note, .setup-footnote { color: #817889; }
+.speed-option { color: #81738f; }
+.speed-option small { color: #83768f; }
+.machine-caption, .stage-status { color: #718378; }
+.name-ball { max-width: 90px; }
+.reveal-card { top: 135px; transform: translate(-50%, -50%); background: color-mix(in srgb, var(--team-color, #eee5fc) 30%, white); }
+#reveal-name { overflow-wrap: anywhere; max-height: 130px; overflow: auto; }
+@keyframes revealPop { from { opacity: 0; transform: translate(-50%, -50%) scale(.9); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+.member-chip { max-width: 100%; }
+.result-subtitle, .results-footer { color: #728177; }
+
+.sticker-note, .sticker-heart { position: absolute; }
+.result-panel:focus { outline: none; }
+
+/* Let the completed teams fill a classroom projector. */
+:fullscreen .page-shell:has(#result-panel:not([hidden])) .hero,
+:fullscreen .workspace:has(#result-panel:not([hidden])) .setup-panel,
+:fullscreen body:has(#result-panel:not([hidden])) .footer { display: none; }
+:fullscreen .workspace:has(#result-panel:not([hidden])) { grid-template-columns: 1fr; }
+:fullscreen .result-panel { min-height: calc(100dvh - 155px); }
+:fullscreen .result-title { font-size: 32px; }
+:fullscreen .team-name { font-size: 18px; }
+:fullscreen .member-chip { font-size: 18px; padding: 10px 15px; }
+:fullscreen .team-members { min-height: 110px; }
+:fullscreen .team-size { font-size: 13px; }
+</style>
+  <script defer>document.addEventListener("DOMContentLoaded", function () {
+'use strict';
+const MAX_PARTICIPANTS = 200;
+const UINT32_RANGE = 0x100000000;
+
+/** Keep spaces inside a name, and keep separate entries with the same name. */
+function parseNames(input) {
+  if (typeof input !== "string") {
+    throw new TypeError("이름 목록은 문자열이어야 해요.");
+  }
+
+  return input
+    .split(/[\r\n,;\t]+/)
+    .map((name) => name.trim())
+    .filter(Boolean);
+}
+
+function randomInteger(maxExclusive) {
+  const crypto = globalThis.crypto;
+
+  if (crypto && typeof crypto.getRandomValues === "function") {
+    const sample = new Uint32Array(1);
+    // Reject the uneven tail so every possible index has the same probability.
+    const limit = UINT32_RANGE - (UINT32_RANGE % maxExclusive);
+
+    do {
+      crypto.getRandomValues(sample);
+    } while (sample[0] >= limit);
+
+    return sample[0] % maxExclusive;
+  }
+
+  return Math.floor(Math.random() * maxExclusive);
+}
+
+/** Return a Fisher–Yates shuffled copy without changing the original array. */
+function shuffleArray(items) {
+  if (!Array.isArray(items)) {
+    throw new TypeError("섞을 목록이 필요해요.");
+  }
+
+  const shuffled = [...items];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = randomInteger(index + 1);
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+
+  return shuffled;
+}
+
+/** Larger teams come first; the difference between any two sizes is at most one. */
+function getTeamSizes(participantCount, teamCount) {
+  if (!Number.isSafeInteger(participantCount) || participantCount < 1) {
+    throw new RangeError("참가자 수는 1명 이상의 정수여야 해요.");
+  }
+
+  if (!Number.isSafeInteger(teamCount) || teamCount < 1) {
+    throw new RangeError("팀 수는 1 이상의 정수여야 해요.");
+  }
+
+  if (teamCount > participantCount) {
+    throw new RangeError("팀 수는 참가자 수보다 많을 수 없어요.");
+  }
+
+  const baseSize = Math.floor(participantCount / teamCount);
+  const extra = participantCount % teamCount;
+
+  return Array.from({ length: teamCount }, (_, index) =>
+    baseSize + (index < extra ? 1 : 0)
+  );
+}
+
+/** Randomly assign every entry once, preserving duplicate names as separate entries. */
+function distributeTeams(names, teamCount) {
+  if (!Array.isArray(names)) {
+    throw new TypeError("참가자 목록이 필요해요.");
+  }
+
+  if (names.length < 2) {
+    throw new RangeError("참가자는 2명 이상 입력해 주세요.");
+  }
+
+  if (names.length > MAX_PARTICIPANTS) {
+    throw new RangeError("참가자는 최대 200명까지 입력할 수 있어요.");
+  }
+
+  if (names.some((name) => typeof name !== "string" || !name.trim())) {
+    throw new TypeError("참가자 이름은 비어 있지 않은 문자열이어야 해요.");
+  }
+
+  if (!Number.isSafeInteger(teamCount) || teamCount < 2) {
+    throw new RangeError("팀 수는 2 이상의 정수로 입력해 주세요.");
+  }
+
+  const sizes = getTeamSizes(names.length, teamCount);
+  const shuffled = shuffleArray(names);
+  let offset = 0;
+
+  return sizes.map((size) => {
+    const team = shuffled.slice(offset, offset + size);
+    offset += size;
+    return team;
+  });
+}
+
+
+const $ = (id) => document.getElementById(id);
+const namesInput = $('names');
+const teamInput = $('team-count');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const colors = ['#eee5fc', '#ffe3e7', '#fff0c5', '#dceee3', '#dfeafb', '#fbe5d9'];
+const themes = [
+  { icon: '🌷', name: '튤립', color: '#fbe5eb' },
+  { icon: '🍀', name: '클로버', color: '#e0eee4' },
+  { icon: '⭐', name: '별빛', color: '#fff1c9' },
+  { icon: '🫧', name: '몽글', color: '#e6e2f6' },
+  { icon: '🍑', name: '복숭아', color: '#fce6dc' },
+  { icon: '☁️', name: '구름', color: '#e3ecf8' },
+  { icon: '🌼', name: '데이지', color: '#f7efc9' },
+  { icon: '🎀', name: '리본', color: '#f4e0ee' }
+];
+const sampleNames = ['김하은', '이서연', '박지우', '최유진', '정수빈', '강다은', '조민서', '윤서아', '장예린', '임채원', '한소윤', '오지민', '서나연', '신예은', '권수아', '황다인', '안유나', '송채린', '전아린', '홍시은', '문서현', '양하린', '고예서', '백다현'];
+let phase = 'idle';
+let duration = 8000;
+let runId = 0;
+let currentTeams = null;
+let teamLabels = [];
+let balls = [];
+let soundEnabled = false;
+let audioContext;
+let soundPending = false;
+let animationFrame;
+let lastFrame = 0;
+let shuffleStarted = 0;
+let lastChime = 0;
+let toastTimer;
+
+function icon(name) {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('class', 'icon');
+  svg.setAttribute('aria-hidden', 'true');
+  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+  use.setAttribute('href', '#icon-' + name);
+  svg.append(use);
+  return svg;
+}
+
+function showToast(message) {
+  $('toast').textContent = message;
+  $('toast').classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $('toast').classList.remove('is-visible'), 3000);
+}
+
+function clearError() {
+  $('field-error').hidden = true;
+  namesInput.removeAttribute('aria-invalid');
+  teamInput.removeAttribute('aria-invalid');
+}
+
+function updateConfig() {
+  const names = parseNames(namesInput.value);
+  const count = Number(teamInput.value);
+  $('participant-count').textContent = names.length;
+  $('team-minus').disabled = phase === 'shuffling' || phase === 'revealing' || count <= 2;
+  $('team-plus').disabled = phase === 'shuffling' || phase === 'revealing' || count >= 200;
+  if (!names.length) $('team-estimate').textContent = '이름을 넣어 주세요';
+  else if (Number.isSafeInteger(count) && count >= 2 && count <= names.length && names.length <= 200) {
+    const sizes = getTeamSizes(names.length, count);
+    const min = Math.min(...sizes);
+    const max = Math.max(...sizes);
+    $('team-estimate').textContent = '한 팀에 ' + min + (min === max ? '' : '–' + max) + '명';
+  } else if (names.length > 200) $('team-estimate').textContent = '최대 200명까지 가능해요';
+  else if (names.length < 2) $('team-estimate').textContent = '2명 이상 모아 주세요';
+  else if (!Number.isSafeInteger(count) || count < 2) $('team-estimate').textContent = '2팀 이상 골라 주세요';
+  else $('team-estimate').textContent = '친구보다 팀이 많아요';
+}
+
+function setBusy(busy) {
+  for (const el of $('setup-form').querySelectorAll('button, input, textarea')) el.disabled = busy;
+  if (!busy) updateConfig();
+}
+
+function resetStage() {
+  runId += 1;
+  phase = 'idle';
+  currentTeams = null;
+  $('result-panel').hidden = true;
+  $('mixer-panel').hidden = false;
+  $('mixer-panel').classList.remove('is-shuffling');
+  $('stage-title').textContent = '오늘은 누구와 한 팀?';
+  $('stage-eyebrow').textContent = 'A LITTLE MIX, A NEW CONNECTION';
+  $('machine-caption').textContent = '이름을 넣으면, 작은 마법이 시작돼요.';
+  $('stage-status').textContent = '';
+  $('status-text').textContent = '만날 준비 중';
+  $('status-pill').classList.remove('is-live');
+  $('progress-track').hidden = true;
+  $('progress-fill').style.width = '0%';
+  $('progress-track').setAttribute('aria-valuenow', '0');
+  $('stage-actions').hidden = true;
+  $('team-preview').hidden = true;
+  $('reveal-card').hidden = true;
+  $('ball-container').style.opacity = '1';
+  $('shuffle-button').querySelector('span').textContent = '두근두근, 팀 만들기';
+  setBusy(false);
+  createBalls();
+}
+
+function createBalls() {
+  const names = parseNames(namesInput.value);
+  const labels = names.length ? names.slice(0, 18) : ['나', '너', '우리', '짝꿍', '함께', '설렘', '친구', '반가워', '♡', '케미', '행운', '☺'];
+  $('ball-container').replaceChildren();
+  balls = labels.map((name, i) => {
+    const el = document.createElement('span');
+    el.className = 'name-ball';
+    el.textContent = name;
+    el.style.setProperty('--ball-color', colors[i % colors.length]);
+    const width = Math.min(90, Math.max(35, [...name].length * 10 + 22));
+    el.style.width = width + 'px';
+    el.title = name;
+    $('ball-container').append(el);
+    const angle = i * 2.399963;
+    const radius = 18 + Math.sqrt(i / labels.length) * 65;
+    return { el, width, x: 124 + Math.cos(angle) * radius, y: 111 + Math.sin(angle) * radius,
+      baseX: 124 + Math.cos(angle) * radius, baseY: 111 + Math.sin(angle) * radius,
+      vx: (Math.random() - .5) * 7, vy: (Math.random() - .5) * 7, seed: i * 1.4 };
+  });
+  if (animationFrame) cancelAnimationFrame(animationFrame);
+  lastFrame = 0;
+  animate(performance.now());
+}
+
+function animate(now) {
+  const step = lastFrame ? Math.min((now - lastFrame) / 16.67, 2) : 1;
+  lastFrame = now;
+  const active = phase === 'shuffling';
+  for (let i = 0; i < balls.length; i++) {
+    const ball = balls[i];
+    let rotation = 0;
+    if (active) {
+      ball.vy += .055 * step;
+      ball.x += ball.vx * step;
+      ball.y += ball.vy * step;
+      const dx = ball.x - 124, dy = ball.y - 109;
+      const distance = Math.hypot(dx, dy);
+      const boundary = 105 - ball.width * .3;
+      if (distance > boundary) {
+        const nx = dx / distance, ny = dy / distance;
+        ball.x = 124 + nx * boundary;
+        ball.y = 109 + ny * boundary;
+        const dot = ball.vx * nx + ball.vy * ny;
+        if (dot > 0) { ball.vx -= 2 * dot * nx; ball.vy -= 2 * dot * ny; }
+      }
+      // Soft collisions make the name balls visibly tumble past one another.
+      for (let j = i + 1; j < balls.length; j++) {
+        const other = balls[j];
+        const dx = other.x - ball.x, dy = other.y - ball.y;
+        const d = Math.hypot(dx, dy);
+        if (d > 0 && d < 25) {
+          const nx = dx / d, ny = dy / d;
+          const speed = (ball.vx - other.vx) * nx + (ball.vy - other.vy) * ny;
+          if (speed > 0) {
+            ball.vx -= speed * nx; ball.vy -= speed * ny;
+            other.vx += speed * nx; other.vy += speed * ny;
+          }
+          const offset = (25 - d) * .25;
+          ball.x -= nx * offset; ball.y -= ny * offset;
+          other.x += nx * offset; other.y += ny * offset;
+        }
+      }
+      const speed = Math.hypot(ball.vx, ball.vy);
+      if (speed > 6) { ball.vx *= 6 / speed; ball.vy *= 6 / speed; }
+      rotation = Math.sin(now / 180 + ball.seed) * 17;
+    } else {
+      ball.x = ball.baseX + (reducedMotion.matches ? 0 : Math.sin(now / 1600 + ball.seed) * 4);
+      ball.y = ball.baseY + (reducedMotion.matches ? 0 : Math.cos(now / 1300 + ball.seed) * 5);
+      rotation = Math.sin(ball.seed) * 12;
+    }
+    ball.el.style.transform = 'translate(' + (ball.x - ball.width / 2) + 'px,' + (ball.y - 16) + 'px) rotate(' + rotation + 'deg)';
+  }
+  if (active) {
+    const percent = Math.min(100, (now - shuffleStarted) / duration * 100);
+    $('progress-fill').style.width = percent + '%';
+    $('progress-track').setAttribute('aria-valuenow', String(Math.round(percent)));
+    if (soundEnabled && now - lastChime > 390) { playTone(380 + Math.random() * 250, .04, .025); lastChime = now; }
+  }
+  if ((phase === 'idle' || active || phase === 'revealing') && !reducedMotion.matches) animationFrame = requestAnimationFrame(animate);
+}
+
+function playTone(frequency = 660, length = .12, volume = .06) {
+  if (!soundEnabled || !audioContext || audioContext.state !== 'running') return;
+  try {
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    gain.gain.setValueAtTime(0, audioContext.currentTime);
+    gain.gain.linearRampToValueAtTime(volume, audioContext.currentTime + .01);
+    gain.gain.exponentialRampToValueAtTime(.001, audioContext.currentTime + length);
+    oscillator.connect(gain).connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + length);
+  } catch { /* Audio is optional. Team drawing remains available. */ }
+}
+
+async function startShuffle(event) {
+  event?.preventDefault();
+  if (phase === 'shuffling' || phase === 'revealing') return;
+  clearError();
+  const names = parseNames(namesInput.value);
+  const count = Number(teamInput.value);
+  try { currentTeams = distributeTeams(names, count); }
+  catch (error) {
+    $('field-error').textContent = error.message;
+    $('field-error').hidden = false;
+    const target = names.length < 2 || names.length > 200 ? namesInput : teamInput;
+    target.setAttribute('aria-invalid', 'true');
+    target.focus();
+    return;
+  }
+  const token = ++runId;
+  teamLabels = currentTeams.map((_, i) => (i + 1) + '팀 · ' + themes[i % themes.length].name);
+  phase = 'shuffling';
+  setBusy(true);
+  $('result-panel').hidden = true;
+  $('mixer-panel').hidden = false;
+  $('mixer-panel').classList.add('is-shuffling');
+  $('stage-title').textContent = '새로운 케미를 섞는 중!';
+  $('stage-eyebrow').textContent = 'MIXING A LITTLE MAGIC';
+  $('machine-caption').textContent = '이름 공들이 신나게 춤추고 있어요.';
+  $('stage-status').textContent = names.length + '명의 친구들, ' + count + '개의 새로운 만남';
+  $('status-text').textContent = '두근두근 셔플 중';
+  $('status-pill').classList.add('is-live');
+  $('stage-tips').hidden = true;
+  $('progress-track').hidden = false;
+  $('stage-actions').hidden = false;
+  $('team-preview').hidden = true;
+  $('reveal-card').hidden = true;
+  $('ball-container').style.opacity = '1';
+  $('shuffle-button').querySelector('span').textContent = '친구들을 섞고 있어요…';
+  shuffleStarted = performance.now();
+  createBalls();
+  if (audioContext?.state === 'suspended' && soundEnabled) audioContext.resume().catch(() => {});
+  if (reducedMotion.matches) { finishRun(); return; }
+  $('skip-button').focus({ preventScroll: true });
+  if (window.innerWidth < 761) $('mixer-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  await new Promise(resolve => setTimeout(resolve, duration));
+  if (token !== runId) return;
+  await revealTeams(token);
+}
+
+async function revealTeams(token) {
+  const teams = currentTeams;
+  phase = 'revealing';
+  $('mixer-panel').classList.remove('is-shuffling');
+  $('stage-title').textContent = '반가워, 우리 팀!';
+  $('stage-eyebrow').textContent = 'A NEW CONNECTION IS HERE';
+  $('status-text').textContent = '팀을 만나는 중';
+  $('machine-caption').textContent = '한 명씩, 새로운 친구를 만나러 가요.';
+  $('progress-track').hidden = true;
+  $('ball-container').style.opacity = '.23';
+  const preview = $('team-preview');
+  preview.replaceChildren();
+  preview.hidden = false;
+  const shown = teams.map(() => 0);
+  const counts = teams.map((team, i) => {
+    const card = document.createElement('div');
+    card.className = 'mini-team';
+    const emoji = document.createElement('span');
+    emoji.className = 'mini-team-icon';
+    emoji.textContent = themes[i % themes.length].icon;
+    const label = document.createElement('span');
+    label.className = 'mini-team-title';
+    label.textContent = (i + 1) + '팀';
+    const count = document.createElement('span');
+    count.className = 'mini-team-count';
+    count.textContent = '0/' + team.length;
+    card.append(emoji, label, count);
+    preview.append(card);
+    return count;
+  });
+  $('reveal-card').hidden = false;
+  const max = Math.max(...teams.map(t => t.length));
+  const total = teams.flat().length;
+  // Keep a full classroom reveal under ten seconds, even for a large roster.
+  const interval = Math.min(330, Math.max(32, 6500 / total));
+  for (let round = 0; round < max; round++) {
+    for (let i = 0; i < teams.length; i++) {
+      if (token !== runId) return;
+      const name = teams[i][round];
+      if (name === undefined) continue;
+      $('reveal-team').textContent = themes[i % themes.length].icon + ' ' + teamLabels[i];
+      $('reveal-name').textContent = name;
+      $('reveal-card').style.setProperty('--team-color', themes[i % themes.length].color);
+      $('reveal-card').animate([{ opacity: .3, transform: 'translate(-50%, -50%) scale(.88)' }, { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }], { duration: Math.min(interval, 200), easing: 'ease-out' });
+      counts[i].textContent = ++shown[i] + '/' + teams[i].length;
+      playTone(520 + (i % 8) * 65, .1, .035);
+      await new Promise(resolve => setTimeout(resolve, interval));
+    }
+  }
+  if (token !== runId) return;
+  finishRun();
+}
+
+function finishRun() {
+  if (!currentTeams) return;
+  runId += 1;
+  phase = 'complete';
+  cancelAnimationFrame(animationFrame);
+  $('mixer-panel').classList.remove('is-shuffling');
+  $('mixer-panel').hidden = true;
+  $('result-panel').hidden = false;
+  $('stage-tips').hidden = false;
+  $('stage-actions').hidden = true;
+  setBusy(false);
+  $('shuffle-button').querySelector('span').textContent = '새로운 팀으로 다시 섞기';
+  $('result-subtitle').textContent = currentTeams.flat().length + '명의 친구가 ' + currentTeams.length + '팀으로 모였어요. 오늘도 즐겁게, 함께!';
+  const grid = $('results-grid');
+  grid.replaceChildren();
+  currentTeams.forEach((team, i) => {
+    const theme = themes[i % themes.length];
+    const card = document.createElement('article');
+    card.className = 'team-card';
+    card.style.setProperty('--team-color', theme.color);
+    const header = document.createElement('div');
+    header.className = 'team-card-header';
+    const emoji = document.createElement('span');
+    emoji.className = 'team-icon';
+    emoji.textContent = theme.icon;
+    emoji.setAttribute('aria-hidden', 'true');
+    const label = document.createElement('input');
+    label.className = 'team-name';
+    label.value = teamLabels[i];
+    label.maxLength = 40;
+    label.setAttribute('aria-label', (i + 1) + '팀 이름 바꾸기');
+    label.addEventListener('input', () => { teamLabels[i] = label.value.trim() || (i + 1) + '팀'; });
+    label.addEventListener('blur', () => { label.value = teamLabels[i]; });
+    const size = document.createElement('span');
+    size.className = 'team-size';
+    size.textContent = team.length + '명';
+    header.append(emoji, label, size);
+    const members = document.createElement('div');
+    members.className = 'team-members';
+    team.forEach(name => { const member = document.createElement('span'); member.className = 'member-chip'; member.textContent = name; members.append(member); });
+    card.append(header, members);
+    grid.append(card);
+    if (!reducedMotion.matches) card.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 350, delay: Math.min(i * 65, 700), fill: 'backwards' });
+  });
+  $('result-panel').focus({ preventScroll: true });
+  if (window.innerWidth < 761) $('result-panel').scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+  $('stage-status').textContent = '팀 만들기 완료';
+  if (soundEnabled) [660, 830, 990].forEach((n, i) => setTimeout(() => playTone(n, .28), i * 110));
+  if (!reducedMotion.matches) confetti();
+  showToast('모두 모였어요! 새로운 팀과 인사해 볼까요?');
+}
+
+function confetti() {
+  const container = $('confetti-container');
+  container.replaceChildren();
+  for (let i = 0; i < 50; i++) {
+    const el = document.createElement('span');
+    el.className = 'confetti-piece';
+    el.style.left = Math.random() * 100 + '%';
+    el.style.backgroundColor = colors[i % colors.length];
+    el.style.animationDelay = Math.random() * .6 + 's';
+    el.style.animationDuration = (2 + Math.random() * 1.6) + 's';
+    el.style.setProperty('--drift', (Math.random() - .5) * 220 + 'px');
+    el.style.borderRadius = i % 3 ? '2px' : '50%';
+    container.append(el);
+  }
+  setTimeout(() => container.replaceChildren(), 4500);
+}
+
+function resultText() {
+  if (!currentTeams) return '';
+  return '모여모여 · 우리 반 팀 나누기\n' + currentTeams.flat().length + '명 / ' + currentTeams.length + '팀\n\n' + currentTeams.map((team, i) => teamLabels[i] + ' (' + team.length + '명)\n' + team.join(', ')).join('\n\n');
+}
+
+$('setup-form').addEventListener('submit', startShuffle);
+$('reshuffle-button').addEventListener('click', startShuffle);
+namesInput.addEventListener('input', () => { clearError(); if (phase === 'complete') resetStage(); else createBalls(); updateConfig(); });
+teamInput.addEventListener('input', () => { clearError(); if (phase === 'complete') resetStage(); updateConfig(); });
+$('team-minus').addEventListener('click', () => { teamInput.value = Math.max(2, Math.floor(Number(teamInput.value) || 2) - 1); teamInput.dispatchEvent(new Event('input')); });
+$('team-plus').addEventListener('click', () => { teamInput.value = Math.min(200, Math.floor(Number(teamInput.value) || 1) + 1); teamInput.dispatchEvent(new Event('input')); });
+$('sample-button').addEventListener('click', () => { namesInput.value = sampleNames.join('\n'); teamInput.value = '4'; clearError(); resetStage(); showToast('24명의 예시 친구들을 모았어요!'); });
+$('clear-button').addEventListener('click', () => { namesInput.value = ''; clearError(); resetStage(); namesInput.focus(); });
+for (const button of document.querySelectorAll('[data-duration]')) {
+  button.addEventListener('click', () => {
+    duration = Number(button.dataset.duration);
+    for (const option of document.querySelectorAll('[data-duration]')) { option.classList.toggle('is-active', option === button); option.setAttribute('aria-pressed', String(option === button)); }
+  });
+}
+$('skip-button').addEventListener('click', finishRun);
+$('cancel-button').addEventListener('click', () => { resetStage(); $('stage-tips').hidden = false; $('shuffle-button').focus({ preventScroll: true }); showToast('잠깐 쉬어 갈게요. 준비되면 다시 섞어 주세요.'); });
+$('copy-button').addEventListener('click', async () => {
+  const text = resultText();
+  try {
+    if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+    else {
+      const field = document.createElement('textarea');
+      field.value = text; field.style.position = 'fixed'; field.style.opacity = '0';
+      document.body.append(field); field.select();
+      const ok = document.execCommand('copy'); field.remove();
+      if (!ok) throw new Error('Clipboard unavailable');
+    }
+    showToast('팀 결과를 복사했어요. 원하는 곳에 붙여 넣어 주세요!');
+  } catch { showToast('복사가 지원되지 않아요. 저장 버튼으로 파일을 받아 주세요.'); }
+});
+$('download-button').addEventListener('click', () => {
+  const blob = new Blob(['\uFEFF', resultText()], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url; link.download = '모여모여_팀결과_' + new Date().toLocaleDateString('sv-SE') + '.txt';
+  document.body.append(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  showToast('팀 결과를 파일로 저장했어요.');
+});
+$('sound-toggle').addEventListener('click', async () => {
+  const button = $('sound-toggle');
+  if (soundPending) return;
+  if (!soundEnabled) {
+    try {
+      const Audio = window.AudioContext || window.webkitAudioContext;
+      if (!Audio) throw new Error('Audio unavailable');
+      audioContext ??= new Audio();
+      soundPending = true;
+      button.disabled = true;
+      await audioContext.resume();
+      soundEnabled = true;
+    } catch { showToast('이 브라우저에서는 효과음을 사용할 수 없어요.'); return; }
+    finally { soundPending = false; button.disabled = false; }
+  } else soundEnabled = false;
+  button.setAttribute('aria-pressed', String(soundEnabled));
+  button.setAttribute('aria-label', soundEnabled ? '효과음 끄기' : '효과음 켜기');
+  button.title = soundEnabled ? '효과음 끄기' : '효과음 켜기';
+  button.querySelector('use').setAttribute('href', soundEnabled ? '#icon-sound' : '#icon-muted');
+  button.querySelector('.sound-label').textContent = soundEnabled ? '소리 ON' : '소리 OFF';
+  playTone(740, .16);
+});
+$('fullscreen-toggle').addEventListener('click', async () => {
+  try {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
+    else { showToast('전체 화면이 지원되지 않아요. PC에서는 F11도 사용할 수 있어요.'); }
+  } catch { showToast('전체 화면을 열지 못했어요. PC에서는 F11을 눌러 보세요.'); }
+});
+document.addEventListener('fullscreenchange', () => {
+  const active = !!document.fullscreenElement;
+  $('fullscreen-toggle').setAttribute('aria-label', active ? '전체 화면 닫기' : '전체 화면');
+  $('fullscreen-toggle').title = active ? '전체 화면 닫기' : '전체 화면';
+});
+$('help-open').addEventListener('click', () => $('help-dialog').showModal());
+$('help-close').addEventListener('click', () => $('help-dialog').close());
+$('help-confirm').addEventListener('click', () => $('help-dialog').close());
+$('help-dialog').addEventListener('click', (event) => { if (event.target === $('help-dialog')) { const rect = $('help-dialog').getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) $('help-dialog').close(); } });
+reducedMotion.addEventListener('change', () => { if (reducedMotion.matches && (phase === 'shuffling' || phase === 'revealing')) finishRun(); else if (phase === 'idle') createBalls(); });
+updateConfig();
+createBalls();
+
+});</script>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden"><defs>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3ZM20 2v4M18 4h4"/></symbol>
+    <symbol id="icon-shuffle" viewBox="0 0 24 24"><path d="M3 6h3c5 0 7 12 12 12h3M17 14l4 4-4 4M3 18h3c2.1 0 3.5-2 5-5M13 9c1.5-2 3-3 5-3h3M17 2l4 4-4 4"/></symbol>
+    <symbol id="icon-sound" viewBox="0 0 24 24"><path d="m11 5-6 4H2v6h3l6 4V5ZM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="icon-muted" viewBox="0 0 24 24"><path d="m11 5-6 4H2v6h3l6 4V5ZM16 9l6 6M22 9l-6 6"/></symbol>
+    <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></symbol>
+    <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.1 1.9c-1.1.7-1.6 1.1-1.6 2.6M12 17h.01"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  </defs></svg>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="모여모여 홈">
+      <svg class="brand-logo" width="42" height="42" viewBox="0 0 44 44" aria-hidden="true"><rect x="2" y="2" width="19" height="19" rx="8" fill="#b9a6eb" transform="rotate(-8 12 12)"/><rect x="23" y="2" width="19" height="19" rx="8" fill="#f5c1c7" transform="rotate(8 32 12)"/><rect x="2" y="23" width="19" height="19" rx="8" fill="#f1d981" transform="rotate(8 12 32)"/><rect x="23" y="23" width="19" height="19" rx="8" fill="#b5d7c3" transform="rotate(-8 32 32)"/><path d="M9 11h.1M14 11h.1M29 11h.1M34 11h.1M9 32h.1M14 32h.1M29 32h.1M34 32h.1" stroke="#59515f" stroke-width="2.5" stroke-linecap="round"/><path d="M10 14q2 2 4 0M29 14q2 2 4 0M10 35q2 2 4 0M29 35q2 2 4 0" fill="none" stroke="#59515f" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span class="brand-name">모여모여<span class="brand-dot">.</span></span>
+    </a>
+    <span class="brand-tagline">교실에 작은 설렘을</span>
+    <div class="header-actions">
+      <button class="icon-button" id="sound-toggle" type="button" aria-label="효과음 켜기" aria-pressed="false" title="효과음 켜기"><svg class="icon"><use href="#icon-muted"/></svg><span class="sound-label">소리 OFF</span></button>
+      <button class="icon-button" id="fullscreen-toggle" type="button" aria-label="전체 화면" title="전체 화면"><svg class="icon"><use href="#icon-expand"/></svg></button>
+      <button class="icon-button" id="help-open" type="button" aria-label="사용 방법" title="사용 방법"><svg class="icon"><use href="#icon-help"/></svg></button>
+    </div>
+  </header>
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <span class="eyebrow"><svg class="icon"><use href="#icon-sparkles"/></svg> 우리 반의 새로운 케미</span>
+        <h1 id="hero-heading">섞이는 순간,<br><span class="lavender-text">우리가 되는 시간.</span></h1>
+        <p class="hero-description">오늘은 누구와 한 팀이 될까요?<br> 친구들의 이름을 넣고, 새로운 만남을 뽑아 보세요.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg class="hero-sticker small-star" width="58" height="58" viewBox="0 0 60 60"><path d="m30 3 7.7 17.8L57 23l-14.3 13 4.1 19L30 45 13.2 55l4.1-19L3 23l19.3-2.2Z" fill="#f5dc8b" stroke="#e8cd7a" stroke-width="1.5"/><path d="M24 28v3m12-3v3m-11 6q5 4 10 0" stroke="#766342" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        <div class="sticker-note"><span>today's little surprise</span><strong>오늘의 케미는?</strong><svg width="112" height="66" viewBox="0 0 112 66"><rect x="9" y="8" width="43" height="44" rx="18" fill="#c8b6ee" transform="rotate(-10 30 30)"/><rect x="59" y="11" width="43" height="44" rx="18" fill="#f2c0c6" transform="rotate(10 80 30)"/><path d="M22 28v3m12-3v3m-12 6q6 5 12 0m38-9v3m12-3v3m-12 6q6 5 12 0" stroke="#65556e" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="m49 20 7-9 7 9" stroke="#e0bd67" stroke-width="2" stroke-linecap="round" fill="none"/></svg><small>반가워, 우리 팀 ♡</small></div>
+        <svg class="sticker-heart" width="51" height="50" viewBox="0 0 52 50"><path d="M26 43C-8 23 6-2 26 12 46-2 60 23 26 43Z" fill="#e8b2c1"/><path d="M16 20q-5 0-5 7" fill="none" stroke="#fff3f6" stroke-width="3" stroke-linecap="round"/></svg>
+        <span class="hero-doodle">✦</span>
+      </div>
+    </section>
+    <div class="workspace">
+      <form class="setup-panel" id="setup-form" novalidate>
+        <div class="section-heading"><div class="section-title"><span class="step-number">1</span><h2>친구들을 모아 주세요</h2></div><button type="button" class="text-button" id="sample-button">예시 넣기 <span aria-hidden="true">↗</span></button></div>
+        <label class="input-label" for="names"><span>참여할 친구들</span><span class="count-badge"><strong id="participant-count">0</strong>명</span></label>
+        <textarea class="names-input" id="names" rows="6" placeholder="김하은&#10;이서연&#10;박지우&#10;최유진&#10;..." aria-describedby="names-hint field-error" spellcheck="false" maxlength="20000"></textarea>
+        <div class="input-hint" id="names-hint"><span>한 줄에 한 명씩, 쉼표로도 구분할 수 있어요.</span><button class="text-button" id="clear-button" type="button" aria-label="명단 지우기">지우기</button></div>
+        <p class="field-error" id="field-error" role="alert" hidden></p>
+        <div class="panel-divider"></div>
+        <div class="section-heading"><div class="section-title"><span class="step-number">2</span><h2>몇 팀으로 나눌까요?</h2></div></div>
+        <label for="team-count" class="visually-hidden">만들 팀 수</label>
+        <div class="team-stepper"><button class="stepper-button" id="team-minus" type="button" aria-label="팀 수 줄이기"><svg class="icon"><use href="#icon-minus"/></svg></button><input type="number" id="team-count" value="4" min="2" max="200" step="1" inputmode="numeric"><span class="team-unit">팀</span><button class="stepper-button" id="team-plus" type="button" aria-label="팀 수 늘리기"><svg class="icon"><use href="#icon-plus"/></svg></button><span class="team-estimate" id="team-estimate">이름을 넣어 주세요</span></div>
+        <p class="field-note">인원은 최대한 고르게 나눠 드려요.</p>
+        <div class="panel-divider"></div>
+        <div class="section-heading"><div class="section-title"><span class="step-number">3</span><h2>설렘의 속도를 골라요</h2></div></div>
+        <div class="speed-options" role="group" aria-label="셔플 속도"><button class="speed-option is-active" type="button" data-duration="8000" aria-pressed="true"><span>두근두근 <span aria-hidden="true">♡</span></span><small>천천히, 8초</small></button><button class="speed-option" type="button" data-duration="3000" aria-pressed="false"><span>빠르게 <span aria-hidden="true">ϟ</span></span><small>가볍게, 3초</small></button></div>
+        <button class="shuffle-button" id="shuffle-button" type="submit"><svg class="icon"><use href="#icon-shuffle"/></svg><span>두근두근, 팀 만들기</span><svg class="icon"><use href="#icon-arrow"/></svg></button>
+        <p class="setup-footnote"><svg class="icon"><use href="#icon-lock"/></svg>이름은 이 화면에서만 사용해요.</p>
+      </form>
+      <section class="mixer-panel" id="mixer-panel" aria-labelledby="stage-title">
+        <div class="mixer-header"><span class="mixer-label"><svg class="icon"><use href="#icon-sparkles"/></svg> THE TEAM MIXER</span><span class="status-pill" id="status-pill"><span class="status-dot"></span><span id="status-text">만날 준비 중</span></span></div>
+        <div class="stage-content">
+          <span class="stage-eyebrow" id="stage-eyebrow">A LITTLE MIX, A NEW CONNECTION</span>
+          <h2 id="stage-title">오늘은 누구와 한 팀?</h2>
+          <div class="machine-scene" id="machine-scene" aria-hidden="true">
+            <svg class="machine-svg" viewBox="0 0 310 335" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="glass" x1="72" y1="30" x2="248" y2="238" gradientUnits="userSpaceOnUse"><stop stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity=".22"/></linearGradient><linearGradient id="machineBody" x1="155" y1="235" x2="155" y2="323" gradientUnits="userSpaceOnUse"><stop stop-color="#efc5c9"/><stop offset="1" stop-color="#eab7c0"/></linearGradient></defs>
+              <ellipse cx="155" cy="326" rx="114" ry="8" fill="#c8d9cd" opacity=".5"/>
+              <path d="M155 7C83 7 27 61 27 127c0 45 21 81 58 104h140c37-23 58-59 58-104C283 61 227 7 155 7Z" fill="url(#glass)" stroke="#c3d8ce" stroke-width="3"/>
+              <path d="M64 88c8-26 30-49 55-57" stroke="white" stroke-opacity=".95" stroke-width="9" stroke-linecap="round"/>
+              <path d="M56 108l-1 9" stroke="white" stroke-width="8" stroke-linecap="round"/>
+              <path d="M85 226h140l21 78H64l21-78Z" fill="url(#machineBody)" stroke="#dba6b1" stroke-width="2"/>
+              <rect x="76" y="222" width="158" height="17" rx="8.5" fill="#f6d8da" stroke="#dba6b1" stroke-width="2"/>
+              <rect x="59" y="302" width="192" height="19" rx="9.5" fill="#edc0c6" stroke="#dba6b1" stroke-width="2"/>
+              <rect x="114" y="275" width="82" height="32" rx="16" fill="#ac818f"/><rect x="120" y="279" width="70" height="26" rx="13" fill="#9d7483"/>
+              <circle cx="155" cy="258" r="19" fill="#fff0c0" stroke="#d6b56d" stroke-width="2"/><g id="machine-knob"><rect x="139" y="254" width="32" height="8" rx="4" fill="#e7c87e" stroke="#d6b56d" stroke-width="1.3"/></g>
+              <path d="M129 289v3m52-3v3m-31 0q5 5 10 0" stroke="#fbe6e9" stroke-width="2.6" stroke-linecap="round"/>
+              <circle cx="85" cy="272" r="3" fill="#f9e2e4"/><circle cx="225" cy="272" r="3" fill="#f9e2e4"/>
+              <path d="m288 59 3-8 3 8 8 3-8 3-3 8-3-8-8-3 8-3ZM17 173l2-6 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z" fill="#e8cb7e"/>
+            </svg>
+            <div class="ball-container" id="ball-container"></div>
+            <div class="reveal-card" id="reveal-card" hidden><span class="reveal-team" id="reveal-team"></span><strong id="reveal-name"></strong><span class="reveal-welcome">우리 팀에 온 걸 환영해 ♡</span></div>
+          </div>
+          <p class="machine-caption" id="machine-caption">이름을 넣으면, 작은 마법이 시작돼요.</p>
+          <p class="stage-status" id="stage-status" role="status" aria-live="polite"></p>
+          <div class="progress-track" id="progress-track" role="progressbar" aria-label="셔플 진행" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="stage-actions" id="stage-actions" hidden><button type="button" class="text-button" id="skip-button">결과 바로 보기 <span aria-hidden="true">↗</span></button><button type="button" class="text-button" id="cancel-button">취소</button></div>
+          <div class="team-preview" id="team-preview" hidden></div>
+        </div>
+        <div class="stage-tips" id="stage-tips"><span><svg class="icon"><use href="#icon-shuffle"/></svg> 공평한 랜덤</span><span><svg class="icon"><use href="#icon-heart"/></svg> 새로운 친구</span><span><svg class="icon"><use href="#icon-sparkles"/></svg> 뜻밖의 케미</span></div>
+      </section>
+      <section class="mixer-panel result-panel" id="result-panel" aria-labelledby="result-title" hidden tabindex="-1">
+        <div class="result-header"><div><span class="stage-eyebrow">HELLO, MY NEW TEAM!</span><h2 class="result-title" id="result-title">우리, 한 팀이 되었어요 <span aria-hidden="true">♡</span></h2><p class="result-subtitle" id="result-subtitle"></p></div><span class="result-sticker" aria-hidden="true">✦</span></div>
+        <div class="results-grid" id="results-grid"></div>
+        <p class="results-footer">팀 이름을 눌러 우리만의 이름으로 바꿔 보세요.</p>
+        <div class="result-actions"><button type="button" class="button-secondary" id="copy-button"><svg class="icon"><use href="#icon-copy"/></svg>결과 복사</button><button type="button" class="button-secondary" id="download-button"><svg class="icon"><use href="#icon-download"/></svg>저장</button><button type="button" class="button-primary" id="reshuffle-button"><svg class="icon"><use href="#icon-shuffle"/></svg>다시 섞기</button></div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer"><span class="footer-wordmark">모여모여<span class="brand-dot">.</span><span class="footer-description">함께라서 더 즐거운 우리 반</span></span><span>새로운 만남에 작은 행운을 <svg class="icon footer-mark"><use href="#icon-heart"/></svg></span></footer>
+  <dialog class="modal" id="help-dialog" aria-labelledby="help-title"><div class="modal-header"><span class="eyebrow">작은 사용 설명서</span><button type="button" class="icon-button modal-close" id="help-close" aria-label="닫기"><svg class="icon"><use href="#icon-close"/></svg></button></div><h2 id="help-title">새로운 팀, 이렇게 만나요.</h2><ol class="help-steps"><li><strong>이름을 모아 주세요.</strong><p>한 줄에 한 명씩 입력하거나, 엑셀 명단을 복사해 붙여 넣어요. 쉼표, 세미콜론, 탭도 구분자로 사용할 수 있어요.</p></li><li><strong>팀 수와 속도를 골라요.</strong><p>2명부터 200명까지 참여할 수 있어요. 같은 이름도 각각 한 명으로 뽑히니, 구분이 필요하면 번호를 붙여 주세요.</p></li><li><strong>두근두근, 셔플 시작!</strong><p>모든 친구를 한 번씩 배정하고, 팀별 인원 차이는 최대 1명으로 맞춰요. 결과는 복사하거나 텍스트 파일로 저장할 수 있어요.</p></li></ol><button class="button-primary modal-button" id="help-confirm" type="button">좋아, 모여 보자! <svg class="icon"><use href="#icon-heart"/></svg></button></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
+  <noscript><p style="padding:24px;text-align:center">팀을 만들려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+</body>
+</html>

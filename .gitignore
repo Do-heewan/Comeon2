@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.sites-runtime/
+*.tar.gz
+.DS_Store
+
+.qa-tools/
+.qa-browser/
+.qa-artifacts/
+.site-source/
+
+# Local hosting identity and upload artifacts
+.openai/
+*.zip

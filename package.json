@@ -1,0 +1,16 @@
+{
+  "name": "moyeomoyeo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "아기자기한 교실용 랜덤 팀 만들기",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build": "node build.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

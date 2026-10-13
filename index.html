@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbfaf6">
+  <meta name="description" content="우리 반의 새로운 케미를 발견하는 시간. 이름 공을 신나게 섞어 공평하게 팀을 만들어 보세요.">
+  <title>모여모여 — 우리 반 랜덤 팀 만들기</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden"><defs>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3ZM20 2v4M18 4h4"/></symbol>
+    <symbol id="icon-shuffle" viewBox="0 0 24 24"><path d="M3 6h3c5 0 7 12 12 12h3M17 14l4 4-4 4M3 18h3c2.1 0 3.5-2 5-5M13 9c1.5-2 3-3 5-3h3M17 2l4 4-4 4"/></symbol>
+    <symbol id="icon-sound" viewBox="0 0 24 24"><path d="m11 5-6 4H2v6h3l6 4V5ZM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="icon-muted" viewBox="0 0 24 24"><path d="m11 5-6 4H2v6h3l6 4V5ZM16 9l6 6M22 9l-6 6"/></symbol>
+    <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></symbol>
+    <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.1 1.9c-1.1.7-1.6 1.1-1.6 2.6M12 17h.01"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  </defs></svg>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="모여모여 홈">
+      <svg class="brand-logo" width="42" height="42" viewBox="0 0 44 44" aria-hidden="true"><rect x="2" y="2" width="19" height="19" rx="8" fill="#b9a6eb" transform="rotate(-8 12 12)"/><rect x="23" y="2" width="19" height="19" rx="8" fill="#f5c1c7" transform="rotate(8 32 12)"/><rect x="2" y="23" width="19" height="19" rx="8" fill="#f1d981" transform="rotate(8 12 32)"/><rect x="23" y="23" width="19" height="19" rx="8" fill="#b5d7c3" transform="rotate(-8 32 32)"/><path d="M9 11h.1M14 11h.1M29 11h.1M34 11h.1M9 32h.1M14 32h.1M29 32h.1M34 32h.1" stroke="#59515f" stroke-width="2.5" stroke-linecap="round"/><path d="M10 14q2 2 4 0M29 14q2 2 4 0M10 35q2 2 4 0M29 35q2 2 4 0" fill="none" stroke="#59515f" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span class="brand-name">모여모여<span class="brand-dot">.</span></span>
+    </a>
+    <span class="brand-tagline">교실에 작은 설렘을</span>
+    <div class="header-actions">
+      <button class="icon-button" id="sound-toggle" type="button" aria-label="효과음 켜기" aria-pressed="false" title="효과음 켜기"><svg class="icon"><use href="#icon-muted"/></svg><span class="sound-label">소리 OFF</span></button>
+      <button class="icon-button" id="fullscreen-toggle" type="button" aria-label="전체 화면" title="전체 화면"><svg class="icon"><use href="#icon-expand"/></svg></button>
+      <button class="icon-button" id="help-open" type="button" aria-label="사용 방법" title="사용 방법"><svg class="icon"><use href="#icon-help"/></svg></button>
+    </div>
+  </header>
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <span class="eyebrow"><svg class="icon"><use href="#icon-sparkles"/></svg> 우리 반의 새로운 케미</span>
+        <h1 id="hero-heading">섞이는 순간,<br><span class="lavender-text">우리가 되는 시간.</span></h1>
+        <p class="hero-description">오늘은 누구와 한 팀이 될까요?<br> 친구들의 이름을 넣고, 새로운 만남을 뽑아 보세요.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg class="hero-sticker small-star" width="58" height="58" viewBox="0 0 60 60"><path d="m30 3 7.7 17.8L57 23l-14.3 13 4.1 19L30 45 13.2 55l4.1-19L3 23l19.3-2.2Z" fill="#f5dc8b" stroke="#e8cd7a" stroke-width="1.5"/><path d="M24 28v3m12-3v3m-11 6q5 4 10 0" stroke="#766342" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        <div class="sticker-note"><span>today's little surprise</span><strong>오늘의 케미는?</strong><svg width="112" height="66" viewBox="0 0 112 66"><rect x="9" y="8" width="43" height="44" rx="18" fill="#c8b6ee" transform="rotate(-10 30 30)"/><rect x="59" y="11" width="43" height="44" rx="18" fill="#f2c0c6" transform="rotate(10 80 30)"/><path d="M22 28v3m12-3v3m-12 6q6 5 12 0m38-9v3m12-3v3m-12 6q6 5 12 0" stroke="#65556e" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="m49 20 7-9 7 9" stroke="#e0bd67" stroke-width="2" stroke-linecap="round" fill="none"/></svg><small>반가워, 우리 팀 ♡</small></div>
+        <svg class="sticker-heart" width="51" height="50" viewBox="0 0 52 50"><path d="M26 43C-8 23 6-2 26 12 46-2 60 23 26 43Z" fill="#e8b2c1"/><path d="M16 20q-5 0-5 7" fill="none" stroke="#fff3f6" stroke-width="3" stroke-linecap="round"/></svg>
+        <span class="hero-doodle">✦</span>
+      </div>
+    </section>
+    <div class="workspace">
+      <form class="setup-panel" id="setup-form" novalidate>
+        <div class="section-heading"><div class="section-title"><span class="step-number">1</span><h2>친구들을 모아 주세요</h2></div><button type="button" class="text-button" id="sample-button">예시 넣기 <span aria-hidden="true">↗</span></button></div>
+        <label class="input-label" for="names"><span>참여할 친구들</span><span class="count-badge"><strong id="participant-count">0</strong>명</span></label>
+        <textarea class="names-input" id="names" rows="6" placeholder="김하은&#10;이서연&#10;박지우&#10;최유진&#10;..." aria-describedby="names-hint field-error" spellcheck="false" maxlength="20000"></textarea>
+        <div class="input-hint" id="names-hint"><span>한 줄에 한 명씩, 쉼표로도 구분할 수 있어요.</span><button class="text-button" id="clear-button" type="button" aria-label="명단 지우기">지우기</button></div>
+        <p class="field-error" id="field-error" role="alert" hidden></p>
+        <div class="panel-divider"></div>
+        <div class="section-heading"><div class="section-title"><span class="step-number">2</span><h2>몇 팀으로 나눌까요?</h2></div></div>
+        <label for="team-count" class="visually-hidden">만들 팀 수</label>
+        <div class="team-stepper"><button class="stepper-button" id="team-minus" type="button" aria-label="팀 수 줄이기"><svg class="icon"><use href="#icon-minus"/></svg></button><input type="number" id="team-count" value="4" min="2" max="200" step="1" inputmode="numeric"><span class="team-unit">팀</span><button class="stepper-button" id="team-plus" type="button" aria-label="팀 수 늘리기"><svg class="icon"><use href="#icon-plus"/></svg></button><span class="team-estimate" id="team-estimate">이름을 넣어 주세요</span></div>
+        <p class="field-note">인원은 최대한 고르게 나눠 드려요.</p>
+        <div class="panel-divider"></div>
+        <div class="section-heading"><div class="section-title"><span class="step-number">3</span><h2>설렘의 속도를 골라요</h2></div></div>
+        <div class="speed-options" role="group" aria-label="셔플 속도"><button class="speed-option is-active" type="button" data-duration="8000" aria-pressed="true"><span>두근두근 <span aria-hidden="true">♡</span></span><small>천천히, 8초</small></button><button class="speed-option" type="button" data-duration="3000" aria-pressed="false"><span>빠르게 <span aria-hidden="true">ϟ</span></span><small>가볍게, 3초</small></button></div>
+        <button class="shuffle-button" id="shuffle-button" type="submit"><svg class="icon"><use href="#icon-shuffle"/></svg><span>두근두근, 팀 만들기</span><svg class="icon"><use href="#icon-arrow"/></svg></button>
+        <p class="setup-footnote"><svg class="icon"><use href="#icon-lock"/></svg>이름은 이 화면에서만 사용해요.</p>
+      </form>
+      <section class="mixer-panel" id="mixer-panel" aria-labelledby="stage-title">
+        <div class="mixer-header"><span class="mixer-label"><svg class="icon"><use href="#icon-sparkles"/></svg> THE TEAM MIXER</span><span class="status-pill" id="status-pill"><span class="status-dot"></span><span id="status-text">만날 준비 중</span></span></div>
+        <div class="stage-content">
+          <span class="stage-eyebrow" id="stage-eyebrow">A LITTLE MIX, A NEW CONNECTION</span>
+          <h2 id="stage-title">오늘은 누구와 한 팀?</h2>
+          <div class="machine-scene" id="machine-scene" aria-hidden="true">
+            <svg class="machine-svg" viewBox="0 0 310 335" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="glass" x1="72" y1="30" x2="248" y2="238" gradientUnits="userSpaceOnUse"><stop stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity=".22"/></linearGradient><linearGradient id="machineBody" x1="155" y1="235" x2="155" y2="323" gradientUnits="userSpaceOnUse"><stop stop-color="#efc5c9"/><stop offset="1" stop-color="#eab7c0"/></linearGradient></defs>
+              <ellipse cx="155" cy="326" rx="114" ry="8" fill="#c8d9cd" opacity=".5"/>
+              <path d="M155 7C83 7 27 61 27 127c0 45 21 81 58 104h140c37-23 58-59 58-104C283 61 227 7 155 7Z" fill="url(#glass)" stroke="#c3d8ce" stroke-width="3"/>
+              <path d="M64 88c8-26 30-49 55-57" stroke="white" stroke-opacity=".95" stroke-width="9" stroke-linecap="round"/>
+              <path d="M56 108l-1 9" stroke="white" stroke-width="8" stroke-linecap="round"/>
+              <path d="M85 226h140l21 78H64l21-78Z" fill="url(#machineBody)" stroke="#dba6b1" stroke-width="2"/>
+              <rect x="76" y="222" width="158" height="17" rx="8.5" fill="#f6d8da" stroke="#dba6b1" stroke-width="2"/>
+              <rect x="59" y="302" width="192" height="19" rx="9.5" fill="#edc0c6" stroke="#dba6b1" stroke-width="2"/>
+              <rect x="114" y="275" width="82" height="32" rx="16" fill="#ac818f"/><rect x="120" y="279" width="70" height="26" rx="13" fill="#9d7483"/>
+              <circle cx="155" cy="258" r="19" fill="#fff0c0" stroke="#d6b56d" stroke-width="2"/><g id="machine-knob"><rect x="139" y="254" width="32" height="8" rx="4" fill="#e7c87e" stroke="#d6b56d" stroke-width="1.3"/></g>
+              <path d="M129 289v3m52-3v3m-31 0q5 5 10 0" stroke="#fbe6e9" stroke-width="2.6" stroke-linecap="round"/>
+              <circle cx="85" cy="272" r="3" fill="#f9e2e4"/><circle cx="225" cy="272" r="3" fill="#f9e2e4"/>
+              <path d="m288 59 3-8 3 8 8 3-8 3-3 8-3-8-8-3 8-3ZM17 173l2-6 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z" fill="#e8cb7e"/>
+            </svg>
+            <div class="ball-container" id="ball-container"></div>
+            <div class="reveal-card" id="reveal-card" hidden><span class="reveal-team" id="reveal-team"></span><strong id="reveal-name"></strong><span class="reveal-welcome">우리 팀에 온 걸 환영해 ♡</span></div>
+          </div>
+          <p class="machine-caption" id="machine-caption">이름을 넣으면, 작은 마법이 시작돼요.</p>
+          <p class="stage-status" id="stage-status" role="status" aria-live="polite"></p>
+          <div class="progress-track" id="progress-track" role="progressbar" aria-label="셔플 진행" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="stage-actions" id="stage-actions" hidden><button type="button" class="text-button" id="skip-button">결과 바로 보기 <span aria-hidden="true">↗</span></button><button type="button" class="text-button" id="cancel-button">취소</button></div>
+          <div class="team-preview" id="team-preview" hidden></div>
+        </div>
+        <div class="stage-tips" id="stage-tips"><span><svg class="icon"><use href="#icon-shuffle"/></svg> 공평한 랜덤</span><span><svg class="icon"><use href="#icon-heart"/></svg> 새로운 친구</span><span><svg class="icon"><use href="#icon-sparkles"/></svg> 뜻밖의 케미</span></div>
+      </section>
+      <section class="mixer-panel result-panel" id="result-panel" aria-labelledby="result-title" hidden tabindex="-1">
+        <div class="result-header"><div><span class="stage-eyebrow">HELLO, MY NEW TEAM!</span><h2 class="result-title" id="result-title">우리, 한 팀이 되었어요 <span aria-hidden="true">♡</span></h2><p class="result-subtitle" id="result-subtitle"></p></div><span class="result-sticker" aria-hidden="true">✦</span></div>
+        <div class="results-grid" id="results-grid"></div>
+        <p class="results-footer">팀 이름을 눌러 우리만의 이름으로 바꿔 보세요.</p>
+        <div class="result-actions"><button type="button" class="button-secondary" id="copy-button"><svg class="icon"><use href="#icon-copy"/></svg>결과 복사</button><button type="button" class="button-secondary" id="download-button"><svg class="icon"><use href="#icon-download"/></svg>저장</button><button type="button" class="button-primary" id="reshuffle-button"><svg class="icon"><use href="#icon-shuffle"/></svg>다시 섞기</button></div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer"><span class="footer-wordmark">모여모여<span class="brand-dot">.</span><span class="footer-description">함께라서 더 즐거운 우리 반</span></span><span>새로운 만남에 작은 행운을 <svg class="icon footer-mark"><use href="#icon-heart"/></svg></span></footer>
+  <dialog class="modal" id="help-dialog" aria-labelledby="help-title"><div class="modal-header"><span class="eyebrow">작은 사용 설명서</span><button type="button" class="icon-button modal-close" id="help-close" aria-label="닫기"><svg class="icon"><use href="#icon-close"/></svg></button></div><h2 id="help-title">새로운 팀, 이렇게 만나요.</h2><ol class="help-steps"><li><strong>이름을 모아 주세요.</strong><p>한 줄에 한 명씩 입력하거나, 엑셀 명단을 복사해 붙여 넣어요. 쉼표, 세미콜론, 탭도 구분자로 사용할 수 있어요.</p></li><li><strong>팀 수와 속도를 골라요.</strong><p>2명부터 200명까지 참여할 수 있어요. 같은 이름도 각각 한 명으로 뽑히니, 구분이 필요하면 번호를 붙여 주세요.</p></li><li><strong>두근두근, 셔플 시작!</strong><p>모든 친구를 한 번씩 배정하고, 팀별 인원 차이는 최대 1명으로 맞춰요. 결과는 복사하거나 텍스트 파일로 저장할 수 있어요.</p></li></ol><button class="button-primary modal-button" id="help-confirm" type="button">좋아, 모여 보자! <svg class="icon"><use href="#icon-heart"/></svg></button></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
+  <noscript><p style="padding:24px;text-align:center">팀을 만들려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+</body>
+</html>
